@@ -1,0 +1,16 @@
+server:
+  servlet:
+    context-path: /query/routes
+  port: ${PORT:8084}
+
+spring:
+  application:
+    name: routes_service_query
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: routes-events
+          consumer.headerMode: headers
+          contentType: application/json
+          group: routes-query-group
