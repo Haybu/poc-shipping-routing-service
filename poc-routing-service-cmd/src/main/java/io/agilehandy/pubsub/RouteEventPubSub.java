@@ -65,7 +65,7 @@ public class RouteEventPubSub {
 	}
 
 	// Kafka KTable of aggregates snapshot
-	@StreamListener(RouteEventChannels.ROUTE_EVENTS_IN)
+	@StreamListener(RouteEventChannels.ROUTE_STREAM_IN)
 	public void snapshot(KStream<String, RouteEvent> events)
 	{
 		Serde<Route> RouteSerde = new JsonSerde<>( Route.class, new ObjectMapper() );

@@ -29,16 +29,20 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface RouteEventChannels {
 
-	String ROUTE_EVENTS_IN = "input";
+	String ROUTE_STREAM_IN = "input";
+	String ROUTES_EVENTS_IN = "routes";
 	String ROUTE_EVENTS_OUT = "output";
-	String BOOKING_EVENT_IN = "bookings";
+	String CARGOS_EVENTS_IN = "cargos";
 
 	@Output(ROUTE_EVENTS_OUT)
 	MessageChannel output();
 
-	@Input(BOOKING_EVENT_IN)
-	SubscribableChannel bookings();
+	@Input(CARGOS_EVENTS_IN)
+	SubscribableChannel cargos();
 
-	@Input(ROUTE_EVENTS_IN)
+	@Input(ROUTES_EVENTS_IN)
+	SubscribableChannel routes();
+
+	@Input(ROUTE_STREAM_IN)
 	KStream<?, ?> input();
 }

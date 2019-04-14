@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /command/routes
-  port: ${PORT:9093}
+  port: ${PORT:8045}
 
 spring:
   application:
@@ -17,12 +17,17 @@ spring:
           destination: routings-events
           consumer.headerMode: headers
           contentType: application/json
-          group: routes-events-group
-        bookgins:
+          group: routes-events-group-1
+        routes:
+          destination: routings-events
+          consumer.headerMode: headers
+          contentType: application/json
+          group: routes-events-group-2
+        cargos:
           destination: bookings-events
           consumer.headerMode: headers
           contentType: application/json
-          group: routes-events-group
+          group: routes-events-group-3
       kafka:
         streams:
           binder:

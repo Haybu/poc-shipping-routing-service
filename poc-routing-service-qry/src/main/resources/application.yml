@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /query/routes
-  port: ${PORT:9094}
+  port: ${PORT:8046}
 
 spring:
   application:

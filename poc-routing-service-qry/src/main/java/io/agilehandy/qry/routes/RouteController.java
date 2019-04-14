@@ -34,6 +34,11 @@ public class RouteController {
 		this.repository = repository;
 	}
 
+	@GetMapping
+	public Iterable<Route> getRoutes() {
+		return repository.findAll();
+	}
+
 	@GetMapping("/{id}")
 	public Route getRoute(@PathVariable String id) {
 		return repository.findById(id)

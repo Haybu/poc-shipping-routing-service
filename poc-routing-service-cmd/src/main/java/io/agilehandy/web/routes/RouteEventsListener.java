@@ -43,9 +43,10 @@ public class RouteEventsListener {
 	}
 
 	// Create a new route every time a new cargo is requested in a new booking
-	@StreamListener(target = RouteEventChannels.BOOKING_EVENT_IN,
+	@StreamListener(target = RouteEventChannels.CARGOS_EVENTS_IN,
 			condition = "headers['event_type']=='CARGO_ADDED'")
 	public void cargoAddedListener(@Payload CargoAddedEvent event) {
+		log.info("Get a cargo added event! will create a new route");
 		RouteCreateCommand cmd =
 				new RouteCreateCommand.Builder()
 				.setBookingId(event.getBookingId())

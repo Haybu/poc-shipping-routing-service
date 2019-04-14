@@ -8,14 +8,14 @@ spring:
     gateway:
       routes:
         - id: routes_command_route
-          uri: http://localhost:9093/
+          uri: http://localhost:8045/
           predicates:
             - Path=/api/routes/**
             - Method=POST
           filters:
             - RewritePath= /api/routes/(?<segment>.*),/command/routes/$\{segment}
         - id: routes_query_route
-          uri: http://localhost:9094/
+          uri: http://localhost:8046/
           predicates:
             - Method=GET
             - Path=/api/routes/**

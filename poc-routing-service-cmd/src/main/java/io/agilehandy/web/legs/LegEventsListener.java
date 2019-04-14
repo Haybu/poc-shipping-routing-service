@@ -45,9 +45,10 @@ public class LegEventsListener {
 
 	// Create legs for the new created route
 	// This listens to route created events
-	@StreamListener(target = RouteEventChannels.BOOKING_EVENT_IN,
+	@StreamListener(target = RouteEventChannels.ROUTES_EVENTS_IN,
 			condition = "headers['event_type']=='ROUTE_CREATED'")
 	public void routeAddedListener(@Payload RouteCreatedEvent event) {
+		log.info("Get a route created event! will create route legs");
 		Route route = routeService.getRouteById(event.getRouteId());
 		legService.attachLegsToRoute(route);
 		routeService.save(route);
