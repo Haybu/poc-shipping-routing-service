@@ -15,6 +15,8 @@
  */
 package io.agilehandy.qry.routes;
 
+import java.util.List;
+
 import io.agilehandy.common.api.exceptions.RouteNotFoundException;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,5 +45,15 @@ public class RouteController {
 	public Route getRoute(@PathVariable String id) {
 		return repository.findById(id)
 				.orElseThrow(() -> new RouteNotFoundException("Route with id {} is not found!".format(id)));
+	}
+
+	@GetMapping("/cargos/{cargoId}/routes/{routeId}")
+	public List<Route> getCargoOneRoute(@PathVariable String cargoId, @PathVariable String routeId) {
+		return repository.findByIdAndCargoId(routeId, cargoId);
+	}
+
+	@GetMapping("/cargos/{cargoId}/routes")
+	public List<Route> getCargoRoutes(@PathVariable String cargoId, @PathVariable String routeId) {
+		return repository.findByCargoId(cargoId);
 	}
 }

@@ -15,7 +15,13 @@
  */
 package io.agilehandy.qry.routes;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 public interface RouteRepository extends CrudRepository<Route, String> {
+
+	public List<Route> findByIdAndCargoId(String id, String cargoId);
+
+	public List<Route> findByCargoId(String cargoId);
 }
