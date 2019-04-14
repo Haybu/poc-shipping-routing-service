@@ -31,7 +31,6 @@ public interface EventTypes {
 	String ROUTE_STATUS_CHANGED = "ROUTE_STATUS_CHANGED";
 
 	String LEG_ADDED = "LEG_ADDED";
-	String LEG_ROUTE_ASSIGNED = "LEG_ROUTE_ASSIGNED";
 	String LEG_UPDATED = "LEG_UPDATED";
 
 }

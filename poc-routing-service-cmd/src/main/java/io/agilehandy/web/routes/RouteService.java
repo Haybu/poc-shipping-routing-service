@@ -22,6 +22,7 @@ import java.util.List;
 import io.agilehandy.legs.LegAddCommand;
 import io.agilehandy.routes.Route;
 import io.agilehandy.routes.RouteCreateCommand;
+import lombok.extern.log4j.Log4j2;
 
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,7 @@ import org.springframework.stereotype.Service;
  **/
 
 @Service
+@Log4j2
 public class RouteService {
 
 	private final RouteRepository repository;

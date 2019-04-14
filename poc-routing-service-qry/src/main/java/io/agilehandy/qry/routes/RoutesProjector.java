@@ -40,7 +40,7 @@ public class RoutesProjector {
 	}
 
 	@StreamListener(target = Sink.INPUT,
-			condition = "headers['event_type']=='Route_CREATED'")
+			condition = "headers['event_type']=='ROUTE_CREATED'")
 	public void routeCreatedProjection(@Payload RouteCreatedEvent event) {
 		log.info("Projecting a new Route entity");
 		Route route = new Route();
