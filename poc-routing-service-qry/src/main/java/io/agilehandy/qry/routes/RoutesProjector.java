@@ -33,10 +33,10 @@ import org.springframework.stereotype.Component;
 @Log4j2
 public class RoutesProjector {
 
-	private final RouteRepository repository;
+	private final RouteRepository routeRepository;
 
-	public RoutesProjector(RouteRepository repository) {
-		this.repository = repository;
+	public RoutesProjector(RouteRepository routeRepository) {
+		this.routeRepository = routeRepository;
 	}
 
 	@StreamListener(target = Sink.INPUT,
@@ -44,12 +44,12 @@ public class RoutesProjector {
 	public void routeCreatedProjection(@Payload RouteCreatedEvent event) {
 		log.info("Projecting a new Route entity");
 		Route route = new Route();
-		route.setRouteId(event.getRouteId());
+		route.setId(event.getRouteId());
 		route.setCargoId(event.getCargoId());
 		route.setOriginOpZone(event.getOrigin().getOpZone());
 		route.setOriginFacility(event.getOrigin().getFacility());
 		route.setDestOpZone(event.getDestination().getOpZone());
 		route.setDestFacility(event.getDestination().getFacility());
-		repository.save(route);
+		routeRepository.save(route);
 	}
 }

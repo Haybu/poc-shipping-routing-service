@@ -70,8 +70,7 @@ public class RouteEventPubSub {
 	{
 		Serde<Route> RouteSerde = new JsonSerde<>( Route.class, new ObjectMapper() );
 
-		events
-				.groupByKey()
+		events.groupByKey()
 				.aggregate(Route::new,
 						(key, event, route) -> route.handleEvent(event),
 									Materialized.<String, Route, KeyValueStore<Bytes, byte[]>>as(EVENTS_SNAPSHOT)

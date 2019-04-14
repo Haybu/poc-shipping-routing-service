@@ -10,7 +10,7 @@ spring:
     stream:
       bindings:
         input:
-          destination: bookings-events
+          destination: routes-events
           consumer.headerMode: headers
           contentType: application/json
           group: routes-query-group

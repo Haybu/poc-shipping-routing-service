@@ -15,16 +15,10 @@
  */
 package io.agilehandy.qry.routes;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import io.agilehandy.qry.AuditModel;
-import io.agilehandy.qry.legs.Leg;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -37,7 +31,7 @@ import lombok.NoArgsConstructor;
 public class Route extends AuditModel {
 
 	@Id
-	private String routeId;
+	private String id;
 
 	private String cargoId;
 
@@ -47,11 +41,4 @@ public class Route extends AuditModel {
 	private String destOpZone;
 	private String destFacility;
 
-	@OneToMany(
-			mappedBy = "route",
-			fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL,
-			orphanRemoval = true
-	)
-	private List<Leg> legList;
 }

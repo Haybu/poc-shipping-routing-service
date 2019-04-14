@@ -62,7 +62,6 @@ public class LegsProjector {
 			leg.setPickupTime(event.getOccurredOn());
 			leg.setDropOffTime(event.getOccurredOn());
 			leg.setTransType(event.getTransType());
-			routeRepository.save(route);
 			legRepository.save(leg);
 		}
 	}

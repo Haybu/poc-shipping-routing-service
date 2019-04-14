@@ -34,6 +34,8 @@ import io.agilehandy.qry.AuditModel;
 import io.agilehandy.qry.routes.Route;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * @author Haytham Mohamed
@@ -46,11 +48,6 @@ public class Leg extends AuditModel {
 
 	@Id
 	private String legId;
-
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "routeId")
-	private Route route;
 
 	private String startOpZone;
 	private String startFacility;
@@ -70,4 +67,10 @@ public class Leg extends AuditModel {
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime dropOffTime;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "route_id", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
+	private Route route;
 }

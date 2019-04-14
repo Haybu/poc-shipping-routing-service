@@ -31,13 +31,13 @@ public interface RouteEventChannels {
 
 	String ROUTE_EVENTS_IN = "input";
 	String ROUTE_EVENTS_OUT = "output";
-	String BOOKING_CARGO_IN = "cargo";
+	String BOOKING_EVENT_IN = "bookings";
 
 	@Output(ROUTE_EVENTS_OUT)
 	MessageChannel output();
 
-	@Input(BOOKING_CARGO_IN)
-	SubscribableChannel cargo();
+	@Input(BOOKING_EVENT_IN)
+	SubscribableChannel bookings();
 
 	@Input(ROUTE_EVENTS_IN)
 	KStream<?, ?> input();

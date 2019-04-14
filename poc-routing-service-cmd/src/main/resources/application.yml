@@ -10,10 +10,15 @@ spring:
     stream:
       bindings:
         output:
-          destination: bookings-events
+          destination: routings-events
           producer.headerMode: headers
           contentType: application/json
         input:
+          destination: routings-events
+          consumer.headerMode: headers
+          contentType: application/json
+          group: routes-events-group
+        bookgins:
           destination: bookings-events
           consumer.headerMode: headers
           contentType: application/json
