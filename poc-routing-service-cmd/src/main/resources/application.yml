@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /command/routes
-  port: ${PORT:8083}
+  port: ${PORT:9093}
 
 spring:
   application:
@@ -10,11 +10,11 @@ spring:
     stream:
       bindings:
         output:
-          destination: routes-events
+          destination: bookings-events
           producer.headerMode: headers
           contentType: application/json
         input:
-          destination: routes-events
+          destination: bookings-events
           consumer.headerMode: headers
           contentType: application/json
           group: routes-events-group

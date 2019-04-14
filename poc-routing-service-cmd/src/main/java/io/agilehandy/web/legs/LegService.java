@@ -17,14 +17,18 @@
 
 package io.agilehandy.web.legs;
 
+import java.util.List;
+
 import io.agilehandy.common.api.exceptions.LegNotFoundException;
+import io.agilehandy.common.api.model.Location;
+import io.agilehandy.common.api.model.RoutePath;
+import io.agilehandy.common.api.model.TransportationType;
 import io.agilehandy.legs.Leg;
 import io.agilehandy.legs.LegAddCommand;
 import io.agilehandy.routes.Route;
 import io.agilehandy.web.routes.RouteRepository;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  * @author Haytham Mohamed
@@ -58,6 +62,30 @@ public class LegService {
 				.orElseThrow(() -> new LegNotFoundException(
 						String.format("No Leg found for route id %s and leg id", routeId, legId)))
 				;
+	}
+
+	public void attachLegsToRoute(Route route) {
+		RoutePath path = this.getPath(route.getOrigin(), route.getDestination());
+		path.gtPathLegs().stream()
+				.map(leg -> {
+					return new LegAddCommand.Builder()
+							.setStartLocation(leg.getStartLocation())
+							.setEndLocation(leg.getEndLocation())
+							.setTransType(leg.getTransType())
+							.setRouteId(route.getId().toString())
+							.build();
+				})
+				.forEach(cmd -> route.addLeg(cmd));
+	}
+
+	// TODO: some external service to get legs of a route
+	public RoutePath getPath(Location origin, Location destination) {
+		return new RoutePath.Builder()
+			.addLocation(origin, TransportationType.TRUCK)
+			.addLocation(new Location("op1", "facility1"), TransportationType.VESSEL)
+			.addLocation(new Location("op2", "facility2"), TransportationType.TRUCK)
+			.addLocation(destination, null)
+			.build();
 	}
 
 }

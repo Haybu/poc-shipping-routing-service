@@ -17,6 +17,10 @@
 
 package io.agilehandy.routes;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.agilehandy.common.api.events.RouteEvent;
 import io.agilehandy.common.api.events.legs.LegAddedEvent;
@@ -28,12 +32,9 @@ import javaslang.API;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import static javaslang.API.*;
-import static javaslang.Predicates.*;
+import static javaslang.API.$;
+import static javaslang.API.Case;
+import static javaslang.Predicates.instanceOf;
 
 /**
  * @author Haytham Mohamed

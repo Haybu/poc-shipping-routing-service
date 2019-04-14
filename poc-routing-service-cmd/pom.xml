@@ -25,6 +25,11 @@
 			<artifactId>poc-routing-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>io.agilehandy</groupId>
+			<artifactId>poc-booking-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 			<groupId>io.javaslang</groupId>

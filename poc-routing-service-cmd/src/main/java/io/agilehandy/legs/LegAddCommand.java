@@ -17,6 +17,9 @@
 
 package io.agilehandy.legs;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -26,15 +29,14 @@ import io.agilehandy.common.api.model.Location;
 import io.agilehandy.common.api.model.TransportationType;
 import lombok.Data;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
 /**
  * @author Haytham Mohamed
  **/
 
 @Data
 public class LegAddCommand implements Serializable {
+
+	private String routeId;
 
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
@@ -60,6 +62,11 @@ public class LegAddCommand implements Serializable {
 			LegAddCommand commandBuilt = commandToBuild;
 			commandToBuild = new LegAddCommand();
 			return commandBuilt;
+		}
+
+		public Builder setRouteId(String routeId) {
+			commandToBuild.setRouteId(routeId);
+			return this;
 		}
 
 		public Builder setStartLocation(Location startLocation) {

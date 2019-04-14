@@ -17,8 +17,12 @@
 
 package io.agilehandy.web.routes;
 
+import java.util.List;
+
+import io.agilehandy.legs.LegAddCommand;
 import io.agilehandy.routes.Route;
 import io.agilehandy.routes.RouteCreateCommand;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -40,8 +44,19 @@ public class RouteService {
 		return route.getId().toString();
 	}
 
+	public void addLeg(List<LegAddCommand> commands) {
+		String routeId = commands.get(0).getRouteId();
+		Route route = getRouteById(routeId);
+		commands.stream().forEach(route::addLeg);
+		repository.save(route);
+	}
+
 	public Route getRouteById(String routeId) {
 		return repository.findById(routeId);
+	}
+
+	public void save(Route route) {
+		repository.save(route);
 	}
 
 }

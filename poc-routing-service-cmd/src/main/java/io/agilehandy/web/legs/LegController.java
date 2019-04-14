@@ -17,15 +17,12 @@
 
 package io.agilehandy.web.legs;
 
-import io.agilehandy.legs.Leg;
 import io.agilehandy.legs.LegAddCommand;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * @author Haytham Mohamed
@@ -45,13 +42,4 @@ public class LegController {
 		return service.addLeg(routeId, cmd);
 	}
 
-	@GetMapping("/{routeId}/legs/{legId}")
-	public Leg getLegOfRoute(@PathVariable String routeId, @PathVariable String legId) {
-		return service.getLeg(routeId, legId);
-	}
-
-	@GetMapping("/{routeId}/legs")
-	public List<Leg> getAllLegsInRoute(@PathVariable String routeId) {
-		return service.getLegs(routeId);
-	}
 }
