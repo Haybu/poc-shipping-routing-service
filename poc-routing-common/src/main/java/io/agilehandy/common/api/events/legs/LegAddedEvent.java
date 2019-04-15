@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,6 +17,8 @@
 
 package io.agilehandy.common.api.events.legs;
 
+import java.time.LocalDateTime;
+
 import io.agilehandy.common.api.events.EventTypes;
 import io.agilehandy.common.api.events.LegBaseEvent;
 import io.agilehandy.common.api.events.RouteEvent;
@@ -24,8 +26,6 @@ import io.agilehandy.common.api.model.Location;
 import io.agilehandy.common.api.model.TransportationType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 /**
  * @author Haytham Mohamed
